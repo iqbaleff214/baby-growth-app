@@ -19,12 +19,22 @@ cd ../backend
 
 if [ -d ".venv" ]; then
     echo "Virtual environment found."
-    source .venv/bin/activate
+    if [[ "$OS" == "Windows_NT" ]]; then
+        .venv\Scripts\activate
+    else
+        source .venv/bin/activate
+    fi
 else
     echo "Creating new virtual environment..."
-    python3 -m venv .venv
-    source .venv/bin/activate
+    if [[ "$OS" == "Windows_NT" ]]; then
+        python -m venv .venv
+        .venv\Scripts\activate
+    else
+        python3 -m venv .venv
+        source .venv/bin/activate
+    fi
     echo "Virtual environment created."
+    
     echo "Installing requirements"
     pip install -r requirements.txt
 fi
