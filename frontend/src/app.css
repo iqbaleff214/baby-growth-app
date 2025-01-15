@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body, #app {
-  height: 100vh;
+  min-height: 100vh;
+}
+
+img {
+  max-height: 150px;
 }
